@@ -1,12 +1,13 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import About from "./routes/About";
-import Contact from "./routes/Contact";
-import ErrorPage from "./routes/ErrorPage";
-import Home from "./routes/Home";
+
 import RootLayout from "./routes/RootLayout";
+const Home = lazy(() => import("./routes/Home"));
+const Contact = lazy(() => import("./routes/Contact"));
+const About = lazy(() => import("./routes/About"));
+const ErrorPage = lazy(() => import("./routes/ErrorPage"));
 
 const router = createBrowserRouter([
   {

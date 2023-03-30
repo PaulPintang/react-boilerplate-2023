@@ -1,4 +1,4 @@
-import React from "react";
+import { Suspense } from "react";
 import { Container, Center, Flex, Text } from "@mantine/core";
 import { Link, Outlet } from "react-router-dom";
 
@@ -18,9 +18,9 @@ const RootLayout = () => {
           </Link>
         </Flex>
       </Center>
-      <main>
+      <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
-      </main>
+      </Suspense>
     </Container>
   );
 };
