@@ -6,9 +6,9 @@ import { Provider } from "react-redux";
 import "./index.css";
 
 import RootLayout from "./routes/RootLayout";
-import Users from "./routes/Users";
-import UserDetails from "./routes/UserDetails";
 import { Protected } from "./middleware/Protected";
+const Users = lazy(() => import("./routes/Users"));
+const UserDetails = lazy(() => import("./routes/UserDetails"));
 const Home = lazy(() => import("./routes/Home"));
 const Contact = lazy(() => import("./routes/Contact"));
 const About = lazy(() => import("./routes/About"));
