@@ -22,6 +22,16 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+        children: [
+          {
+            path: "number",
+            element: <h1>Contact me in this no: 09234232342342342344</h1>,
+          },
+          {
+            path: "email",
+            element: <h1>Contact me in this account: contactme@gmail.com</h1>,
+          },
+        ],
       },
       {
         path: "about",

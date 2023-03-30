@@ -10,7 +10,7 @@ const RootLayout = () => {
           <Link to="home" className="no-underline">
             <Text>HOME</Text>
           </Link>
-          <Link to="contact" className="no-underline">
+          <Link to="contact/number" className="no-underline">
             <Text>CONTACT</Text>
           </Link>
           <Link to="about" className="no-underline">
