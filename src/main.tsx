@@ -7,6 +7,7 @@ import "./index.css";
 
 import RootLayout from "./routes/RootLayout";
 import Users from "./routes/Users";
+import UserDetails from "./routes/UserDetails";
 const Home = lazy(() => import("./routes/Home"));
 const Contact = lazy(() => import("./routes/Contact"));
 const About = lazy(() => import("./routes/About"));
@@ -43,12 +44,10 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <Users />,
-        children: [
-          {
-            path: ":id",
-            element: <p>hey</p>,
-          },
-        ],
+      },
+      {
+        path: "users/:id",
+        element: <UserDetails />,
       },
     ],
   },

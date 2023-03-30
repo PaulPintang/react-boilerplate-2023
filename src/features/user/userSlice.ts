@@ -22,8 +22,8 @@ export const fetchAllUsers = createAsyncThunk<
   try {
     const users = await axios.get("https://jsonplaceholder.typicode.com/users");
     return users.data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -33,11 +33,19 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase("auth/logout", (state) => {
+        state.users = [];
+        (state.status = "idle"), (state.error = null);
+      })
       .addCase(fetchAllUsers.pending, (state) => {
-        state.status = "pending";
+        if (state.users?.length === 0) {
+          state.status = "pending";
+        }
       })
       .addCase(fetchAllUsers.fulfilled, (state, action) => {
-        state.users = action.payload;
+        if (state.users?.length === 0) {
+          state.users = action.payload;
+        }
         state.status = "succeeded";
       })
       .addCase(fetchAllUsers.rejected, (state) => {

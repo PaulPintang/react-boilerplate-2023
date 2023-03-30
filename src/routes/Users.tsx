@@ -1,23 +1,26 @@
 import React, { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { fetchAllUsers } from "../features/user/userSlice";
 import { Table } from "@mantine/core";
 
 const Users = () => {
   const dispatch = useAppDispatch();
-  const { users, status } = useAppSelector((state) => state.user);
+  const { users, status, error } = useAppSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(fetchAllUsers()).unwrap();
   }, []);
 
-  const data = users.map((user) => (
+  const data = users?.map((user) => (
     <tr key={user.id}>
       <td>{user.id}</td>
       <td>{user.name}</td>
       <td>{user.username}</td>
       <td>{user.email}</td>
+      <td>
+        <Link to={`${user.id}`}>View</Link>
+      </td>
     </tr>
   ));
 
@@ -25,6 +28,8 @@ const Users = () => {
     <div>
       {status === "pending" ? (
         <h1>Fetching...</h1>
+      ) : error ? (
+        error
       ) : (
         <Table striped highlightOnHover withBorder withColumnBorders>
           <thead>
@@ -38,9 +43,6 @@ const Users = () => {
           <tbody>{data}</tbody>
         </Table>
       )}
-      <main>
-        <Outlet />
-      </main>
     </div>
   );
 };
