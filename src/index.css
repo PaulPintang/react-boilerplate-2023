@@ -64,6 +64,10 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+/* others */
+a {
+  text-decoration: none;
+}
 /*
   9. Create a root stacking context
 */
