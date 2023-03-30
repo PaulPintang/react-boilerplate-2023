@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 
 import RootLayout from "./routes/RootLayout";
+import Users from "./routes/Users";
 const Home = lazy(() => import("./routes/Home"));
 const Contact = lazy(() => import("./routes/Contact"));
 const About = lazy(() => import("./routes/About"));
@@ -38,6 +39,16 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "users",
+        element: <Users />,
+        children: [
+          {
+            path: ":id",
+            element: <p>hey</p>,
+          },
+        ],
       },
     ],
   },

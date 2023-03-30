@@ -33,7 +33,7 @@ const Dashboard = () => {
           </Button>
           <NumberInput type="number" value={number} onChange={setNumber} />
           <Button onClick={() => dispatch(incrementByAmount(Number(number)))}>
-            Increment By {number}
+            Increment By Amount
           </Button>
         </Flex>
       </Center>
