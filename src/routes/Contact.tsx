@@ -1,14 +1,24 @@
 import { Flex } from "@mantine/core";
 import { Suspense } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Contact = () => {
   return (
     <div>
       <p>Contact Details</p>
       <Flex gap={20}>
-        <Link to="number">Number</Link>
-        <Link to="email">Email</Link>
+        <NavLink
+          to="number"
+          className={({ isActive }) => (isActive ? "text-green-500" : "")}
+        >
+          Number
+        </NavLink>
+        <NavLink
+          to="email"
+          className={({ isActive }) => (isActive ? "text-green-500" : "")}
+        >
+          Email
+        </NavLink>
       </Flex>
       <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
