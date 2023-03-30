@@ -1,19 +1,25 @@
 import { Button } from "@mantine/core";
-import { lazy, Suspense, useState } from "react";
-import { IconDatabase } from "@tabler/icons-react";
+import { lazy, Suspense } from "react";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { login, logout } from "../features/auth/authSlice";
 
 const Dashboard = lazy(() => import("./Dashboard"));
 
 const Home = () => {
-  const [admin, setAdmin] = useState(false);
+  const dispatch = useAppDispatch();
+  const { isAuth } = useAppSelector((state) => state.auth);
   return (
     <div>
       <p>Home</p>
-      <Button leftIcon={<IconDatabase />} onClick={() => setAdmin(!admin)}>
-        Im Admin
-      </Button>
+      {isAuth ? (
+        <Button onClick={() => dispatch(logout())}>Logout</Button>
+      ) : (
+        <Button variant="gradient" onClick={() => dispatch(login())}>
+          Authenticate
+        </Button>
+      )}
       <Suspense fallback={<p>Loading...</p>}>
-        {admin ? <Dashboard /> : <h1>Not an admin</h1>}
+        {isAuth ? <Dashboard /> : <h1>Not authenticated!!</h1>}
       </Suspense>
     </div>
   );

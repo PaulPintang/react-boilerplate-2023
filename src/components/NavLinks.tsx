@@ -11,7 +11,7 @@ const NavLinks = () => {
     <Center py={20}>
       <Flex gap={20}>
         <NavLink
-          to="home"
+          to="/"
           className={({ isActive, isPending }: Link) =>
             isPending
               ? "pending"

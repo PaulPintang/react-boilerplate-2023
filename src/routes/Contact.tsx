@@ -1,10 +1,13 @@
 import { Flex } from "@mantine/core";
 import { Suspense } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
 
 const Contact = () => {
+  const { isAuth } = useAppSelector((state) => state.auth);
   return (
     <div>
+      {isAuth && <h1>This appears cause you are authenticated! Yey</h1>}
       <p>Contact Details</p>
       <Flex gap={20}>
         <NavLink
