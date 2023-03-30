@@ -8,6 +8,7 @@ import "./index.css";
 import RootLayout from "./routes/RootLayout";
 import Users from "./routes/Users";
 import UserDetails from "./routes/UserDetails";
+import { Protected } from "./middleware/Protected";
 const Home = lazy(() => import("./routes/Home"));
 const Contact = lazy(() => import("./routes/Contact"));
 const About = lazy(() => import("./routes/About"));
@@ -29,11 +30,11 @@ const router = createBrowserRouter([
         children: [
           {
             path: "number",
-            element: <h1>Contact me in this no: 09234232342342342344</h1>,
+            element: <h1>Contact me on this no: 09234232342342342344</h1>,
           },
           {
             path: "email",
-            element: <h1>Contact me in this account: contactme@gmail.com</h1>,
+            element: <h1>Contact me on this account: contactme@gmail.com</h1>,
           },
         ],
       },
@@ -43,11 +44,19 @@ const router = createBrowserRouter([
       },
       {
         path: "users",
-        element: <Users />,
+        element: (
+          <Protected>
+            <Users />
+          </Protected>
+        ),
       },
       {
         path: "users/:id",
-        element: <UserDetails />,
+        element: (
+          <Protected>
+            <UserDetails />
+          </Protected>
+        ),
       },
     ],
   },
